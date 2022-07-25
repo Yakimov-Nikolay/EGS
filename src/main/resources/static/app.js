@@ -5,7 +5,7 @@ $('#loadCourses').click(() => {
 function reloadCourses() {
     $('#college-container').empty();
 
-    fetch('http://localhost:8080/courses')
+    fetch("http://localhost:8080/courses")
         .then(response => response.json())
         .then(json => json.forEach(course => {
             let tableRow = '<tr>' +
@@ -22,13 +22,12 @@ function reloadCourses() {
         }));
 }
 
-$("body").on('click', 'button.delete-btn', function () {
-    let courseId = $(this).data('course-id')
+$('body').on('click', 'button.delete-btn', function () {
+    let courseId = $(this).data('course-id');
     console.log("Course id to delete is: " + courseId);
 
-    fetch('http://localhost:8000/courses/' + courseId, {
+    fetch("http://localhost:8080/courses/" + courseId, {
         method: 'DELETE'
 
-    }).then(_ => reloadCourses());
-
+    }).then(_ => reloadCourses())
 });
