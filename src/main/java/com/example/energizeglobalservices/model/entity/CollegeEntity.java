@@ -17,7 +17,7 @@ public class CollegeEntity extends BaseEntity{
         this.name = name;
         return this;
     }
-    @OneToMany(mappedBy = "college")
+    @OneToMany
     public List<CourseEntity> getCourses() {
         return courses;
     }
