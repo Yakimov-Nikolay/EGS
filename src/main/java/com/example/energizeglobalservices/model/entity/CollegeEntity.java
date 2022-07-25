@@ -17,7 +17,7 @@ public class CollegeEntity extends BaseEntity{
         this.name = name;
         return this;
     }
-    @OneToMany
+    @OneToMany(mappedBy = "college",fetch = FetchType.EAGER)
     public List<CourseEntity> getCourses() {
         return courses;
     }

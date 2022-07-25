@@ -19,7 +19,7 @@ public class CourseEntity extends BaseEntity{
         return this;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     public CollegeEntity getCollege() {
         return college;
     }
