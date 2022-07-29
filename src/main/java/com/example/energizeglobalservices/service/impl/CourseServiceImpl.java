@@ -10,6 +10,10 @@ import com.example.energizeglobalservices.service.CollegeService;
 import com.example.energizeglobalservices.service.CourseService;
 import org.modelmapper.ModelMapper;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -83,6 +87,13 @@ public class CourseServiceImpl implements CourseService {
         updatedCourseEntity(courseEntity, courseDTO);
         this.courseRepository.save(courseEntity);
         return this.map(courseEntity);
+    }
+
+    @Override
+    public Page<CourseDTO> getCourses(int pageNo, int pageSize, String sortBy) {
+        Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+
+        return courseRepository.findAll(pageable).map(this::asCourse);
     }
 
     private void updatedCourseEntity(CourseEntity courseEntity, CourseDTO courseDTO) {
